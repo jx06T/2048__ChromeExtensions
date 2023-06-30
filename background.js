@@ -1,45 +1,21 @@
-let contextID = 0;
-console.log("jx00");
-
-chrome.input.ime.onActivate.addListener(() => {
-  console.log("onActivate");
-});
-
-chrome.input.ime.onDeactivated.addListener(() => {
-  console.log("onDeactivated");
-});
-
+var context_id = -1;
+console.log('jx06')
 chrome.input.ime.onFocus.addListener((context) => {
-  console.log("onFocus");
-  contextID = context.contextID;
+    context_id = context.contextID;
+    console.log('jx01', context.contextID)
 });
 
-chrome.input.ime.onBlur.addListener(() => {
-  console.log("onBlur");
-  contextID = 0;
-})
-
-chrome.input.ime.onKeyEvent.addListener((engineID, keyData) =>{
-  const handled = false;
-
-  if (keyData.type == "keyup") return handled;
-  
-  console.log("alt=" + keyData.altKey + ",ctrl=" + keyData.ctrlKey + ",shift=" + keyData.shiftKey);
-  console.log("code=" + keyData.code + ",key=[" + keyData.key + "]");
-
-  return handled;
-});
-
-chrome.action.onClicked.addListener((tab) => {
-  const keyData = {
-    ctrlKey: true,
-    code: "KeyV",
-    key: "V",
-    type: "keydown"
-  };
-
-  chrome.input.ime.sendKeyEvents({
-    contextID : contextID,
-    keyData :[keyData]
-  });
-});
+chrome.input.ime.onKeyEvent.addListener(
+    (engineID, keyData) => {
+        console.log('jx01', keyData)
+        if (keyData.type == "keydown" && keyData.key.match(/^[a-z]$/)) {
+            chrome.input.ime.commitText({
+                "contextID": context_id,
+                "text": keyData.key.toUpperCase()
+            });
+            return true;
+        } else {
+            return false;
+        }
+    }
+);

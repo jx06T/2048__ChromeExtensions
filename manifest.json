@@ -16,7 +16,7 @@
         "service_worker": "background.js"
     },
     "action": {
-        "default_title": "sendKeyEvents"
+        "default_title": "2048"
     },
     "input_components": [
         {
