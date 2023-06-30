@@ -16,6 +16,17 @@
         "service_worker": "background.js"
     },
     "action": {
-        "default_popup": "popup.html"
-    }
+        "default_title": "sendKeyEvents"
+    },
+    "input_components": [
+        {
+            "name": "sendKeyEvents",
+            "type": "ime",
+            "id": "sendKeyEvents",
+            "language": "en-US",
+            "layouts": [
+                "us"
+            ]
+        }
+    ]
 }
