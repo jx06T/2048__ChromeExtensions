@@ -1,0 +1,21 @@
+{
+    "manifest_version": 3,
+    "name": "2048",
+    "description": "最佳演算法?",
+    "version": "0.1",
+    "permissions": [
+        "input"
+    ],
+    "icons": {
+        "16": "images/img16.png",
+        "32": "images/img32.png",
+        "48": "images/img48.png",
+        "128": "images/img128.png"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup.html"
+    }
+}
